@@ -1,0 +1,8 @@
+{
+  "name": "steganographr",
+  "version": "1.0.0",
+  "description": "A port of Neatnik's Steganographr code to JS, enabling you to use it as a package.",
+  "main": "index.js",
+  "author": "Ben Silverman",
+  "license": "MIT"
+}
