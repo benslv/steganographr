@@ -45,32 +45,32 @@ const hidden2bin = (str) => {
 	return str;
 };
 
-const encode = (public, private) => {
-	if (public.length < 2) {
+const encode = (pub, priv) => {
+	if (pub.length < 2) {
 		throw Error("Public message must consist of at least 2 characters.");
 	}
 
-	const half = Math.ceil(public.length / 2);
+	const half = Math.ceil(pub.length / 2);
 
-	const privateBin = str2bin(private);
+	const privateBin = str2bin(priv);
 	const privateZeroWidth = bin2hidden(privateBin);
 	const privateWrapped = wrap(privateZeroWidth);
 
 	const publicStenographised = [
-		public.slice(0, half),
+		pub.slice(0, half),
 		privateWrapped,
-		public.slice(half, public.length),
+		pub.slice(half, pub.length),
 	].join("");
 
 	return publicStenographised;
 };
 
-const decode = (public) => {
-	const unwrapped = unwrap(public);
+const decode = (pub) => {
+	const unwrapped = unwrap(pub);
 
 	const message = unwrapped
 		? bin2str(hidden2bin(unwrapped))
-		: bin2str(hidden2bin(public));
+		: bin2str(hidden2bin(pub));
 
 	if (message.length < 2) return false;
 
